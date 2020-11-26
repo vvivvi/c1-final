@@ -1,1 +1,0 @@
-{"basic_sel9": {"learning_rate": 0.03, "iterations": 1000, "depth": 14, "l2_leaf_reg": 1, "task_type": "GPU"}, "basic_sel16": {"learning_rate": 0.5, "iterations": 300, "depth": 14, "l2_leaf_reg": 0.3, "task_type": "GPU"}}
