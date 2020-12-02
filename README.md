@@ -1,11 +1,15 @@
 # kaggle-final-project
-Final project of the course" How to Win a Data Science Competition: Learn from Top Kagglers" by National Research University Higher School of Economics
+Final project of the course" How to Win a Data Science Competition: Learn from Top Kagglers" by National Research University Higher School of Economics.
+
+Author: Ville Viitaniemi
 
 ## Overview of the approach
 
 This solution does not aim for the best possible prediction accuracy. Instead, a straightforward solution is described that involves most of the techniques mentioned in the final project requirements. 
 
 ### Task
+In this competition the input data consists of daily sales data from the 1C Company, separated according to individual shops and items. The input data
+is from the time period January 2013 - October 2015. The task is to predict the total sales for every product and store during the month of December 2015.
 
 ### Approach
 In the  implemented approach
@@ -27,20 +31,22 @@ List of notebooks
 1. Exploratory data analysis
 2. Data leak analysis
 3. Feature generation
-4. Feature selection and hyperparameter tuning
-5. Prediction model training 
-6. Prediction generation 
-7. Ensembling of predictions
-8. Prediction scaling
+4. Feature selection 
+5. hyperparameter tuning
+6. Prediction model training 
+7. Prediction generation 
+8. Ensembling of predictions
+9. Prediction scaling
 
 It is enough to run the code in the notebooks 6.-8. to generate the final submission file, if the 
 readily extracted features and the pre-trained models 
-are used. One needs to run the notebooks 3.-8. if one wants 
+are used. One needs to run the notebooks 3.-9. if one wants 
 to extract the features and train the models from scratch. 
 
 ## Requirements checklist
 
-In this section the review criteria from the assignment instructions are listed and commented one by one. Accotding to the instructions, it should be enough to comply with most of the requirements.
+In this section the review criteria from the assignment instructions are listed and commented one by one. According to the instructions, 
+it should be enough to comply with most of the requirements.
 
 ### Clarity
 
@@ -80,7 +86,7 @@ In this section the review criteria from the assignment instructions are listed 
 
 ### Advanced Features II
 - At least one feature from this topic is introduced
-*Yes. The video Statistics and distance based features talks about "Calculating various statistics of one feature grouped by another" as one advanced feature engineering technique. In this solution, monthly sales are aggregated over shops and various item category variables." 
+*Yes. The video "Statistics and distance based features" talks about "Calculating various statistics of one feature grouped by another" as one advanced feature engineering technique. In this solution, monthly sales are aggregated over shops and various item category variables." 
 ### Hyperparameter tuning
 - Parameters of models are roughly optimal. *Yes The hyperparameters are found by a systematic grid search in a validation setup. They can thus be considered "roughly optimal.*
 
@@ -90,3 +96,5 @@ In this section the review criteria from the assignment instructions are listed 
 - Models from different classes are utilized (at least two from the following: KNN, linear models, RF, GBDT, NN). *Yes. The CatBoost library implements GBDT and random forest implementation from scikit-learn is also utilised.*
 
 ## Result summary
+
+The optimally scaled predictions achieve leaderboard scores of 0.961351 and 0.95467 (public and private).  

@@ -127,7 +127,7 @@ def clipped_rmse(gt, predicted,clip_min=0, clip_max=20):
   return np.sqrt((target-predicted)**2).mean()
 
 ###
-def average_submissions(filenames_in, id_out,data_folder='.'):
+def average_submissions(filenames_in, id_out, data_folder='.'):
     # forms unweighted mean submission by averaging all the submission files
     # given as inputs
     df_first = pd.read_csv(os.path.join(data_folder, filenames_in[0]))
@@ -139,5 +139,30 @@ def average_submissions(filenames_in, id_out,data_folder='.'):
       print(contrib.shape)  
       result += contrib[...,np.newaxis]  
     fn_out = 'submission-average-{}.csv'.format(id_out)
-    write_predictions_by_array(result, fn_out)
+    write_predictions_by_array(result, os.path.join(data_folder, fn_out))
+                            
+###
+
+def weight_submissions(filenames_in, weights, id_out, data_folder='.'):
+    assert len(filenames_in) == len (weights)
+    df_first = pd.read_csv(os.path.join(data_folder, filenames_in[0]))
+    n_rows = df_first.shape[0]                       
+    result = np.zeros((n_rows,1))
+    for fn,w in zip(filenames_in, weights):
+      df = pd.read_csv(os.path.join(data_folder, fn))
+      contrib = df['item_cnt_month'].to_numpy()*w/len(filenames_in)              
+      print(contrib.shape)  
+      result += contrib[...,np.newaxis]  
+    fn_out = 'submission-weighted-{}.csv'.format(id_out)
+    write_predictions_by_array(result, os.path.join(data_folder, fn_out))
+
+###
+def safe_div(a,b):
+  epsilon=1e-10
+  return (a+epsilon)/(b+epsilon)  
+
+
+  
+
+
 
