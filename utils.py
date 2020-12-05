@@ -161,6 +161,13 @@ def safe_div(a,b):
   epsilon=1e-10
   return (a)/(b+epsilon)  
 
+###
+def combine_score_dicts(list_of_dicts):
+  res_dict={}
+  for d in list_of_dicts:
+    for key in d:
+      res_dict[key] = d[key] + res_dict.get(key, 0) 
+  return res_dict    
 
   
 
