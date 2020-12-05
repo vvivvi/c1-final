@@ -159,7 +159,7 @@ def weight_submissions(filenames_in, weights, id_out, data_folder='.'):
 ###
 def safe_div(a,b):
   epsilon=1e-10
-  return (a+epsilon)/(b+epsilon)  
+  return (a)/(b+epsilon)  
 
 
   
