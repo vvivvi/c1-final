@@ -43,7 +43,17 @@ readily extracted features and the pre-trained models
 are used. One needs to run the notebooks 3.-9. if one wants 
 to extract the features and train the models from scratch. 
 
-## Requirements checklist
+## Setup
+
+### Dependencies
+
+requirements.txt specified the Python modules required to run the notebooks. The list may not be minimal,
+but should be sufficient.
+
+In conda, the environment can be recreated e.g. with the command line
+conda create -n c1env --file requirements.txt
+
+## Review criteria checklist
 
 In this section the review criteria from the assignment instructions are listed and commented one by one. According to the instructions, 
 it should be enough to comply with most of the requirements.
