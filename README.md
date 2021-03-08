@@ -50,8 +50,19 @@ to extract the features and train the models from scratch.
 requirements.txt specified the Python modules required to run the notebooks. The list may not be minimal,
 but should be sufficient.
 
-In conda, the environment can be recreated e.g. with the command line
-conda create -n c1env --file requirements.txt
+### Example
+In conda, the environment can be recreated e.g. with the shell commands.
+
+conda create --name c1test-env python jupyterlab
+conda activate c1test-env
+pip install -r requirements.txt
+python -m ipykernel --user --name c1test-env
+
+Then notenooks can be run e.g. with
+jupyter lab Notebook_1_EDA.ipynb
+
+This is tested on a Ubuntu machine. Running in Windows may be problematic. 
+
 
 ## Review criteria checklist
 
