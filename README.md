@@ -38,7 +38,7 @@ List of notebooks
 8. Ensembling of predictions
 9. Prediction scaling
 
-It is enough to run the code in the notebooks 6.-8. to generate the final submission file, if the 
+It is enough to run the code in the notebooks 7.-9. to generate the final submission file if the 
 readily extracted features and the pre-trained models 
 are used. One needs to run the notebooks 3.-9. if one wants 
 to extract the features and train the models from scratch. 
@@ -53,13 +53,16 @@ but should be sufficient.
 ### Example
 In conda, the environment can be recreated e.g. with the shell commands.
 
-conda create --name c1test-env python jupyterlab
-conda activate c1test-env
+```
+conda create --name c1-env python=3.8 jupyterlab
+conda activate c1-env
 pip install -r requirements.txt
-python -m ipykernel --user --name c1test-env
-
+python -m ipykernel --user --name c1-env
+```
 Then notenooks can be run e.g. with
+```
 jupyter lab Notebook_1_EDA.ipynb
+```
 
 This is tested on a Ubuntu machine. Running in Windows may be problematic. 
 
@@ -107,7 +110,7 @@ it should be enough to comply with most of the requirements.
 
 ### Advanced Features II
 - At least one feature from this topic is introduced
-*Yes. The video "Statistics and distance based features" talks about "Calculating various statistics of one feature grouped by another" as one advanced feature engineering technique. In this solution, monthly sales are aggregated over shops and various item category variables." 
+*Yes. The video "Statistics and distance based features" talks about "Calculating various statistics of one feature grouped by another" as one advanced feature engineering technique. In this solution, monthly sales are aggregated over shops and various item category variables.* 
 ### Hyperparameter tuning
 - Parameters of models are roughly optimal. *Yes The hyperparameters are found by a systematic grid search in a validation setup. They can thus be considered "roughly optimal.*
 
