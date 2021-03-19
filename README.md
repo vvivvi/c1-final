@@ -57,14 +57,14 @@ In conda, the environment can be recreated e.g. with the shell commands.
 conda create --name c1-env python=3.8 jupyterlab
 conda activate c1-env
 pip install -r requirements.txt
-python -m ipykernel --user --name c1-env
+python -m ipykernel install --user --name c1-env
 ```
 Then notenooks can be run e.g. with
 ```
 jupyter lab Notebook_1_EDA.ipynb
 ```
 
-This is tested on a Ubuntu machine. Running in Windows may be problematic. 
+This is tested on a Ubuntu machine. Running in Windows has earlier been problematic but now seems to work. 
 
 
 ## Review criteria checklist
