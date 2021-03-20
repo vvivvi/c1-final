@@ -8,10 +8,12 @@ import gc
 ###
 
 
-def load_feature_set(id_string, data_folder='.', train_and_val_only=False):
+def load_feature_set(id_string, data_folder='.', datasets = 'all'):
     # read the specified feature set into memory from a disk file
     # extract training, validation and test sets (labels and features)
     # along with the mapping between the test set indices and submission IDs
+
+    assert datasets in ['all', 'train_and_val','trainval','test']
 
     date_block_val = 23  # Dec 2014
     date_block_test = 35  # Dec 2015
@@ -25,24 +27,29 @@ def load_feature_set(id_string, data_folder='.', train_and_val_only=False):
     all_data['time_of_year'] = (all_data['date_block_num'] + 6) % 12
 
     dates = all_data['date_block_num']
+    if datasets in ['all', 'train_and_val']:
+        dates_train = (dates <= date_block_val - 2)
 
-    dates_train = (dates <= date_block_val - 2)
-    if not train_and_val_only:
+    if datasets in ['all', 'trainval']:
         dates_trainval = (dates <= date_block_test - 2)
 
 
 # extract training, validation and test sets (labels and features)
-    y_train = all_data.loc[dates_train, 'target']
-    if not train_and_val_only:
+    if datasets in ['all', 'train_and_val']:
+        y_train = all_data.loc[dates_train, 'target']
+        y_val = all_data.loc[dates == date_block_val, 'target']
+    
+    if datasets in ['all', 'trainval']:
         y_trainval = all_data.loc[dates_trainval, 'target']
-    y_val = all_data.loc[dates == date_block_val, 'target']
-
+    
     to_drop_cols = ['target']
 
-    X_train = all_data.loc[dates_train].drop(to_drop_cols, axis=1)
-    X_val = all_data.loc[dates == date_block_val].drop(to_drop_cols, axis=1)
-    if not train_and_val_only:
+    if datasets in ['all', 'train_and_val']:
+        X_train = all_data.loc[dates_train].drop(to_drop_cols, axis=1)
+        X_val = all_data.loc[dates == date_block_val].drop(to_drop_cols, axis=1)
+    if datasets in ['all', 'trainval']:
         X_trainval = all_data.loc[dates_trainval].drop(to_drop_cols, axis=1)
+    if datasets in ['all', 'test']:    
         X_test = all_data.loc[dates == date_block_test].drop(to_drop_cols,
                                                              axis=1)
 
@@ -72,10 +79,14 @@ def load_feature_set(id_string, data_folder='.', train_and_val_only=False):
         del test_data
         gc.collect()
 
+    if datasets == 'all':
         return X_train, y_train, X_trainval, y_trainval, X_val, y_val, X_test, submissionidx2testidx
-    else:
+    elif datasets == 'train_and_val':
         return X_train, y_train, X_val, y_val
-
+    elif datasets == 'trainval':
+        return X_trainval, y_trainval
+    elif datasets == 'test':        
+        return X_test, submissionidx2testidx
 
 def downcast_dtypes(df):
     '''
