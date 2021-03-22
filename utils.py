@@ -10,8 +10,13 @@ import gc
 
 def load_feature_set(id_string, data_folder='.', datasets = 'all'):
     # read the specified feature set into memory from a disk file
-    # extract training, validation and test sets (labels and features)
-    # along with the mapping between the test set indices and submission IDs
+    # return the feature vectors X and labels Y
+
+    # to conserve memory, only subsets of the full feature set specified
+    # with the argument 'datasets' are returned
+
+    # additionally return the mapping between the test set indices and submission IDs
+    # if test set features are included in the specified 'datasets'
 
     assert datasets in ['all', 'train_and_val','trainval','test']
 
@@ -175,6 +180,9 @@ def average_submissions(filenames_in, id_out, data_folder='.'):
 
 
 def weight_submissions(filenames_in, weights, id_out, data_folder='.'):
+    # forms weighted average submission by averaging all the submission files
+    # given as inputs with specified weights
+
     assert len(filenames_in) == len(weights)
     df_first = pd.read_csv(os.path.join(data_folder, filenames_in[0]))
     n_rows = df_first.shape[0]
